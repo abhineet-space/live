@@ -1,11 +1,9 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import HashRedirect from "./components/HashRedirect";
 
 function App() {
   return (
     <>
-      <HashRedirect />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/hire" element={<HomePage hire={true} />} />
