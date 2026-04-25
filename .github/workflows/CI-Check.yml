@@ -1,0 +1,30 @@
+name: CI-check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  CI-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Prettier check
+        run: pnpm prettier:check
+
+      - name: ESLint
+        run: pnpm lint
+
+      - name: Knip
+        run: pnpm knip
